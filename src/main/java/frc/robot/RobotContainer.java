@@ -25,10 +25,6 @@ public class RobotContainer {
     );
 
     configureBindings();
-
-    // 1. Parametre: X Ekseni (İleri / Geri) -> -getLeftY()
-    // 2. Parametre: Y Ekseni (Sağ / Sol)   -> -getLeftX()
-    // 3. Parametre: Dönüş (Omega)           -> -getRightX()
     m_drive.setDefaultCommand(
         new TeleopDriveCommand(
             m_drive,

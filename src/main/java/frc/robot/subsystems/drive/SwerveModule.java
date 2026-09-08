@@ -17,7 +17,6 @@ public class SwerveModule {
     this.io = io;
     this.index = index;
 
-    // Açı takibinde -PI ile +PI arası süreklilik
     turnFeedback.enableContinuousInput(-Math.PI, Math.PI);
   }
 
@@ -27,14 +26,11 @@ public class SwerveModule {
   }
 
   public void runSetpoint(SwerveModuleState state) {
-    // 180 derece gereksiz dönmeyi engelleyen standart WPILib optimizasyonu
     SwerveModuleState optimizedState = SwerveModuleState.optimize(state, getAngle());
 
-    // Orijinal PID hesaplaması (Ters eksi işareti YOK)
     double turnVolts = turnFeedback.calculate(getAngle().getRadians(), optimizedState.angle.getRadians());
     io.setTurnVoltage(turnVolts);
 
-    // Motorun simülasyonda rahat dönebilmesi için voltaj katsayısını 3.0 yaptık
     double driveVolts = optimizedState.speedMetersPerSecond * 3.0; 
     io.setDriveVoltage(driveVolts);
   }

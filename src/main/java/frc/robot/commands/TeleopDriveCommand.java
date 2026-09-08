@@ -27,15 +27,13 @@ public class TeleopDriveCommand extends Command {
 
   @Override
   public void execute() {
-    // Stick üzerindeki minik titreşimleri elemek için deadband (0.05)
     double xInput = MathUtil.applyDeadband(translationXSupplier.getAsDouble(), 0.05);
     double yInput = MathUtil.applyDeadband(translationYSupplier.getAsDouble(), 0.05);
     double omegaInput = MathUtil.applyDeadband(rotationSupplier.getAsDouble(), 0.05);
 
-    // Hız katsayıları: Çizgisel hız max 0.8 m/s, Dönüş hızı max 0.8 rad/s
     double xVelocity = xInput * 0.8; 
     double yVelocity = yInput * 0.8; 
-    double omegaVelocity = omegaInput * 0.8; 
+    double omegaVelocity = omegaInput * 1.0; 
 
     drive.runVelocity(
         ChassisSpeeds.fromFieldRelativeSpeeds(

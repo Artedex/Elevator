@@ -59,7 +59,7 @@ public class Drive extends SubsystemBase {
       module.periodic();
     }
 
-    // Simülasyonda robot dönüyorsa açı değişimini hesaplayıp Gyro'ya işliyoruz
+    
     if (RobotBase.isSimulation()) {
       ChassisSpeeds currentSpeeds = kinematics.toChassisSpeeds(getModuleStates());
       simGyroAngle = simGyroAngle.plus(Rotation2d.fromRadians(currentSpeeds.omegaRadiansPerSecond * 0.02));
