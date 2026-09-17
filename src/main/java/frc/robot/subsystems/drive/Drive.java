@@ -59,7 +59,6 @@ public class Drive extends SubsystemBase {
       module.periodic();
     }
 
-    
     if (RobotBase.isSimulation()) {
       ChassisSpeeds currentSpeeds = kinematics.toChassisSpeeds(getModuleStates());
       simGyroAngle = simGyroAngle.plus(Rotation2d.fromRadians(currentSpeeds.omegaRadiansPerSecond * 0.02));

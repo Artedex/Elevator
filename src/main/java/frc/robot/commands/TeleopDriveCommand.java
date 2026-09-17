@@ -27,18 +27,22 @@ public class TeleopDriveCommand extends Command {
 
   @Override
   public void execute() {
-    double xInput = MathUtil.applyDeadband(translationXSupplier.getAsDouble(), 0.05);
-    double yInput = MathUtil.applyDeadband(translationYSupplier.getAsDouble(), 0.05);
-    double omegaInput = MathUtil.applyDeadband(rotationSupplier.getAsDouble(), 0.05);
+    double xInput = MathUtil.applyDeadband(translationXSupplier.getAsDouble(), 0.08);
+    double yInput = MathUtil.applyDeadband(translationYSupplier.getAsDouble(), 0.08);
+    double omegaInput = MathUtil.applyDeadband(rotationSupplier.getAsDouble(), 0.08);
 
-    double xVelocity = xInput * 0.8; 
-    double yVelocity = yInput * 0.8; 
-    double omegaVelocity = omegaInput * 1.0; 
+
+    double maxLinearSpeed = 4.5; 
+    double maxAngularSpeed = Math.PI * 2.0; 
+
+    double xVelocity = xInput * maxLinearSpeed; 
+    double yVelocity = yInput * maxLinearSpeed; 
+    double omegaVelocity = omegaInput * maxAngularSpeed; 
 
     drive.runVelocity(
         ChassisSpeeds.fromFieldRelativeSpeeds(
-            yVelocity,
             xVelocity,
+            yVelocity,
             omegaVelocity,
             drive.getRotation()
         )
