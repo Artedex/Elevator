@@ -8,7 +8,8 @@ public class GyroIOSim implements GyroIO {
 
   @Override
   public void updateInputs(GyroIOInputs inputs) {
-yawPosition = yawPosition.plus(Rotation2d.fromRadians(yawVelocityRadPerSec * 0.02));    inputs.connected = true;
+    yawPosition = yawPosition.plus(Rotation2d.fromRadians(yawVelocityRadPerSec * 0.02));    
+    inputs.connected = true;
     inputs.yawPosition = yawPosition;
     inputs.yawVelocityRadPerSec = yawVelocityRadPerSec;
   }

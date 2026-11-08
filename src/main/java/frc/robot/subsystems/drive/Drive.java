@@ -11,6 +11,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.littletonrobotics.junction.Logger;
+import frc.robot.Constants.DriveConstants;
 
 public class Drive extends SubsystemBase {
   private final GyroIO gyroIO;
@@ -72,7 +73,7 @@ public class Drive extends SubsystemBase {
 
   public void runVelocity(ChassisSpeeds speeds) {
     SwerveModuleState[] states = kinematics.toSwerveModuleStates(speeds);
-    SwerveDriveKinematics.desaturateWheelSpeeds(states, 4.5);
+    SwerveDriveKinematics.desaturateWheelSpeeds(states, DriveConstants.kMaxLinearSpeedMetersPerSec);
 
     for (int i = 0; i < 4; i++) {
       modules[i].runSetpoint(states[i]);
